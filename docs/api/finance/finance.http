@@ -1,0 +1,29 @@
+### Create a new finance record
+POST http://127.0.0.1:8000/api/finance
+Accept: application/json
+Content-Type: application/json
+
+{
+  "amount": 1000,
+  "category_id": 1,
+  "date": "2025-03-01"
+}
+
+### Get all finance records
+GET http://127.0.0.1:8000/api/finance
+
+### Get a specific finance record by ID
+GET http://localhost:3000/api/finance/{{financeId}}
+
+### Update a finance record by ID
+PUT http://localhost:3000/api/finance/{{financeId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Finance",
+  "amount": 1500,
+  "type": "expense"
+}
+
+### Delete a finance record by ID
+DELETE http://localhost:3000/api/finance/{{financeId}}

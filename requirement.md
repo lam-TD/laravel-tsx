@@ -1,0 +1,19 @@
+- Categories:
+  - name
+  - parent_id
+  - color
+  - description
+- Finance:
+  - transfer
+    - date
+    - amount
+    - note
+    - category
+    - owner
+  - filters
+    - day
+    - month
+    - year
+  - calendar
+  - chart
+  - export to xlsx, csv
