@@ -16,6 +16,10 @@ class SupportServiceProvider extends ServiceProvider
 		$this->app->bind('ApiResponse', function () {
 			return new ApiResponseFormatter();
 		});
+
+		$this->app->bind('FileEncryption', function () {
+			return new FileEncryter();
+		});
 	}
 
 	/**

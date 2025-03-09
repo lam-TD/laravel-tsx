@@ -7,12 +7,15 @@ use App\Models\PersonalSpendingActivity;
 use Ltd\Supports\Http\Controllers\ResourceController;
 use Ltd\Supports\Http\Api\Response\ApiResponse;
 use Ltd\Supports\Http\Requests\ResourceRequest;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class FinanceResourceController extends ResourceController
 {
     protected array $allowedSorts = ['id', 'date', 'amount'];
     protected array $allowedFilters = [];
-    protected array $allowedFilterScopes = ['date', 'category'];
+    protected array $allowedFilterScopes = [
+        // AllowedFilter::scope('ctg', 'category'),
+    ];
     protected array $allowedIncludes = ['category'];
     protected array $allowedFields = ['id', 'date', 'amount', 'category_id', 'category.id', 'category.name', 'category.color', 'category.icon'];
 
@@ -22,6 +25,10 @@ class FinanceResourceController extends ResourceController
     public function index(ResourceRequest $request)
     {
         $this->request = $request;
+        $this->allowedFilterScopes = [
+            AllowedFilter::scope('ctg', 'category'),
+            AllowedFilter::exact()
+        ];
         $resource = $this->resourceCollection()->toArray();
         return ApiResponse::ok(data: $resource['data'], meta: $resource['meta']);
     }

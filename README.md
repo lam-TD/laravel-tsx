@@ -1,25 +1,31 @@
-# Laravel + React Starter Kit
 
-## Introduction
+### Users api
 
-Our React starter kit provides a robust, modern starting point for building Laravel applications with a React frontend using [Inertia](https://inertiajs.com).
+#### users table
+  - id: integer, primary key, auto increment
+  - name: string, required
+  - email: string, required, unique
+  - password: string, required
+  - avatar: string, optional
+  - role: string, required, enum: ['admin', 'user']
+  - status: string, required, enum: ['active', 'inactive']
+  - 2FA: boolean, optional
 
-Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) component library.
+- list: pagination, filter, sort, include, fields
+- show: include, fields
+- create: 
+  - email: check email exists
+  - check role: super admin or role is user
 
-## Official Documentation
-
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
-
-## Contributing
-
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## License
-
-The Laravel + React starter kit is open-sourced software licensed under the MIT license.
+- update:
+  - check update self
+  - check role: super admin or role is user
+- update avatar: image (jpg, png), max 2MB
+  - only owner can update
+- delete
+  - soft delete
+  - can't not delete self
+  - can't not delete super admin
+  - can't not delete user has same role.
+  - super admin can delete all users

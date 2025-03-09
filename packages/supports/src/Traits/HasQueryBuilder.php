@@ -27,7 +27,8 @@ trait HasQueryBuilder {
   public function loadFilters()
   {
     return array_merge($this->allowedFilters, 
-    array_map(fn($scope) => AllowedFilter::scope($scope), $this->allowedFilterScopes),
+    $this->allowedFilterScopes,
+    // array_map(fn($scope) => AllowedFilter::scope($scope), $this->allowedFilterScopes),
     array_map(fn($extract) => AllowedFilter::exact($extract), $this->allowedFilterExtracts));
   }
 }

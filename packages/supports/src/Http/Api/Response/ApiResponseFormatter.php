@@ -32,7 +32,7 @@ class ApiResponseFormatter
     ], 201);
   }
 
-  public function serverError($message = "Server Error", $data = null)
+  public function internalServerError($message = "Server Error", $data = null)
   {
     return response()->json([
       'status' => 'ERROR',
